@@ -35,7 +35,7 @@ export const CalendarModal = () => {
         end: nowPlus1.toDate()
     });
 
-    const { notes, title } = formValues;
+    const { notes, title, start, end } = formValues;
 
     const handleInputchange = ({ target }) =>{
        
@@ -68,7 +68,14 @@ export const CalendarModal = () => {
 
     const handleSubmitForm =  (e) => {
         e.preventDefault();
-        console.log( formValues );
+        
+        const momentStart = moment( start );
+        const momentEnd = moment( end );
+
+        if ( momentStart.isSameOrAfter( momentEnd ) ){
+            console.log('Fecha 2 debe ser mayor')
+            return;
+        }
     }
     
     return (
